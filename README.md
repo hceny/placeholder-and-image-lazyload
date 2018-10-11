@@ -25,6 +25,7 @@ $placeholder.init(true,true);
 $placeholder.init({all:true,color:true});
 ```
 Parameter Description:
+
 First parameter (all): default false
 
 - True - displays compatible tags regardless of browser support.
@@ -38,6 +39,7 @@ The second parameter (color): default false
 *In addition, the placeholder display is not hidden when the focus is acquired, and is hidden only when there is text input.*
 
 参数描述：
+
 第一个参数(all)：默认false
 
  - true-无论浏览器是否支持，都显示兼容标签
