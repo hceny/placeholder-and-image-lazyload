@@ -11,24 +11,24 @@
  **/
 var $lazyload = {
 	fn: null,
-	init: function() {
-		this.fn && this.fn();
+	init: function (defaultImage) {
+		this.fn && this.fn(defaultImage);
 	}
 };
-$(function() {
+$(function () {
 
-	var defaultImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAAAL34HQAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDBDQzNEODNEQTczMTFFN0IwOUVDMjZCNzk2Q0I3MEQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDBDQzNEODREQTczMTFFN0IwOUVDMjZCNzk2Q0I3MEQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0MENDM0Q4MURBNzMxMUU3QjA5RUMyNkI3OTZDQjcwRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0MENDM0Q4MkRBNzMxMUU3QjA5RUMyNkI3OTZDQjcwRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlXesxAAAAAGUExURcXFxQAAAIQkT1cAAAACdFJOU/8A5bcwSgAAA8RJREFUeNrsm9uS7CAIRTf//9NTM9WJlyg30XTV4EufSaIuARHRA/rKgsRKrMRKrMRKrNPjW24NXfkCLEzKm1hgy0tYEMsLWFCVw1hQl4NYMJVTWMAJLmymcoJhN5SPC/upPFw4QOXgQgCV6ZNoLG1/IVxYoYr41oFVt2nraJULbvu2CjcCK2BuLXFhX9TyrGQwgo2x1EI78DjNSP+rxAr12e4lADup/FyIEntseI0gqQdzwRMj7OeCK3LZEKQZsEIctosL8/pRmQaPCuZYbOPtm+v955fl0q3lUFJNGi8cVizeNCD3K1A/saAcEGMaEyzRRixYzIBlLNmkN2DNuKAW1qz1NSx6EYttezxPDVi0BYsSy2Bcw2YTS+WpX5uJC1h4DQsHvbzYNoO1cU0Mw7JFEFjyWxYsaVvbY11PEY7FcjERm2J7FYiljeW3Y5E6VUuxWDiCRcFYpNwnGtN+dh26sIR9IIVjjSejSRohOiRVaG06IVD7YQsWTVZj7XJJFCEsLncqsI6qySkINxax20w2AbJMBSkBru93EUvaJy4WjSz082EzlpNqM5bN4Z3CEhKRuvyWMteox+JSkeokpXorNrdtX86UTemuHj7LOvJgqeMDLrxZgJrk5fWhJ/OlH2pyimG91zBeNqOgxlim5nusmEsl8A6wb3et9h4ssWPrsdYRLKYH/gh9O5XxJol/9rhMR3vIth3LufBbr68coSKlZ3audv4wSdVZ0DUCD5btQvdWKNXJvusIejXWlfryHI4HhODmPKc9cA3B+oqSWImVWImVWImVWIn1n7GgbGWYWBx/BPUWo3qNfkfZH7aUP/qUQ5f7rJ/VnDzWY1x/bfw+B33+0Y75yiG11w6qvNLnBboUWOHp66mkVWGVbtrNZSPSm7LIrWDVWaUWCzYs3EICXU0NbujWaazqi+63GlWrw2voBKUSa22gFoiMNbStW36t+q+2oTf5KiMyxWqtrIjgo9yC2992uaR0Gy+7q6bBmTGPdUlqeJeh+kUlr/JSxOr7LVr4G/YMq52Qo5xkNRGLjm+sD7MqNULdbW4wtiVuty911lneLkk681vDAVIv+ZkSn1bJX6175G6n+a3BAoHGATFYgyRxqT1CVWON3Sk1rmWG9VzlINwm7b4my396uLHKeqFVYm3GIE5aELCeSqw9JKvEQaa/zLBu4Uf9bLJ88Je0qiqD2mCV2ACisdQ2cc0YKI1PtDt3j9bpTabdY1F6Vmja7VaK89Gp/kpBxvKJlViJlViJlViJlViJlViJFVh+BBgA9PE/s1lsNbwAAAAASUVORK5CYII=";
+	var defaultImage = "data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSgBBwcHCggKEwoKEygaFhooKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKP/AABEIACYAMgMBEQACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/APUtK03SovD/APaerm5cPN5SJCQO3v8AQ0AJ53hP/n21X80/xoAPO8J/8+2q/mn+NAB53hP/AJ9tV/NP8aAF83woQSLXVuPdf8aALNlp/h/V4ruPTlvobmKFpVMpGDj6Z9RQB8X/ABn/AOSlax/2x/8ARKUAfY9z/wAk8tP+v4/+gtQBgWVpPe3CwWkTSyt0VaAGXEEttO8NxG0cqHDKwwRQBHQB6L4I1TSLbw+0NzNBDMCxmEhAMnJx9eOMUAY/hBoX1zWWtl2wNazGNfRdy4/SgD4x+M//ACUrWP8Atj/6JSgD7Huf+SeWn/X8f/QWoA67wFon9m6d9qnTF1cAE56qnYf1P/1qAF8beHRqtt9ptVAvohx/00X+79fSgDzTT7C5v71bS2jLTMcEHjb6k+gFAHT614HuLKxWeyla6dBmWPbg/VfX6UAVPAX/AB/6j/14yfzWgD44+M//ACUrWP8Atj/6JSgD7m8I6bHqfhqxSfBihvGmZT/FgEAfmRQB3FABQBDFa28U0k0UMaSyffdVALfU96AJqAMW60a1t7m91G3Xy5ZLaSORV6NnB3fXigD8+/jP/wAlK1j/ALY/+iUoA+jfD/x98MaNaNbR6lFLEW3DfazgjPXolAGp/wANJ+Gf+fy3/wDAe4/+IoAP+Gk/DP8Az+W//gPcf/EUAH/DSfhn/n8t/wDwHuP/AIigA/4aT8M/8/lv/wCA9x/8RQBBe/tG+G7m0lhW/gjMildwtpyRn/gFAHyx8TdVs9a8calqGmTefaTeVsk2sucRIp4YA9QaAP8A/9k=";
 	var imageNode = 'img[data-src]',
 		bgNode = '[data-bg-src]',
 		dataAttr = 'data-src',
 		dataBgAttr = 'data-bg-src';
-	var lazyload = function() {
+	var lazyload = function () {
 		var images = $(imageNode);
 		var bgNodes = $(bgNode);
 		var imgIndexArray = [];
 		var bgIndexArray = [];
-		return function(reset) {
-			if(reset) {
+		return function (reset) {
+			if (reset) {
 				images = $(imageNode);
 				imgIndexArray = [];
 				bgNodes = $(bgNode);
@@ -36,25 +36,25 @@ $(function() {
 			}
 			var seeHeight = window.innerHeight ? window.innerHeight : $(window).height();
 			var scrollTop = $(window).scrollTop();
-			$.each(images, function(index, obj) {
-				if($.inArray(index, imgIndexArray) > -1)
+			$.each(images, function (index, obj) {
+				if ($.inArray(index, imgIndexArray) > -1)
 					return true;
 				var _this = $(obj);
-				if(_this.offset().top < seeHeight + scrollTop) {
+				if (_this.offset().top < seeHeight + scrollTop) {
 					var src = _this.attr('src');
-					if(!src || src == defaultImage)
+					if (!src || src == defaultImage)
 						_this.attr('src', _this.attr(dataAttr));
 					imgIndexArray.push(index);
 				}
 			});
-			$.each(bgNodes, function(index, obj) {
-				if($.inArray(index, bgIndexArray) > -1)
+			$.each(bgNodes, function (index, obj) {
+				if ($.inArray(index, bgIndexArray) > -1)
 					return true;
 				var _this = $(obj);
-				if(_this.offset().top < seeHeight + scrollTop) {
+				if (_this.offset().top < seeHeight + scrollTop) {
 					var src = _this.css('background-image');
 					var defImg = defaultImage;
-					if(!src || src.indexOf(defImg) > -1 || src == 'none')
+					if (!src || src.indexOf(defImg) > -1 || src == 'none')
 						_this.css('background-image', "url(" + _this.attr(dataBgAttr)) + ")";;
 					bgIndexArray.push(index);
 				}
@@ -62,14 +62,14 @@ $(function() {
 		}
 	}
 
-	var throttle = function(fn, delay, atleast) {
+	var throttle = function (fn, delay, atleast) {
 		var timeout = null,
 			startTime = new Date();
-		return function() {
+		return function () {
 			var curTime = new Date();
 			clearTimeout(timeout);
-			if(curTime - startTime >= atleast) {
-				fn();
+			if (curTime - startTime >= atleast) {
+				fn(defaultImage);
 				startTime = curTime;
 			} else {
 				timeout = setTimeout(fn, delay);
@@ -77,20 +77,21 @@ $(function() {
 		}
 	}
 	var loadImages = lazyload();
-	$lazyload.fn = function() {
-		$.each($(imageNode), function(index, obj) {
+	$lazyload.fn = function (outImg) {
+		defaultImage = outImg && defaultImage;
+		$.each($(imageNode), function (index, obj) {
 			var _this = $(obj);
-			if(!_this.attr('src'))
+			if (!_this.attr('src'))
 				_this.attr('src', defaultImage);
 		});
-		$.each($(bgNode), function(index, obj) {
+		$.each($(bgNode), function (index, obj) {
 			var _this = $(obj);
 			var bgSrc = _this.css('background-image');
-			if(!bgSrc || bgSrc == 'none')
+			if (!bgSrc || bgSrc == 'none')
 				_this.css('background-image', "url(" + defaultImage + ")");
 		});
 		loadImages(true);
 	};
-	$lazyload.fn();
+	$lazyload.fn(defaultImage);
 	$(window).scroll(throttle(loadImages, 500, 1000));
 });
