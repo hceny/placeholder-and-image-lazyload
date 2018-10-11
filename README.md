@@ -24,17 +24,18 @@ $placeholder.init(true,true);
 ```
 $placeholder.init({all:true,color:true});
 ```
-
 Parameter Description:
 First parameter (all): default false
 
-True - displays compatible tags regardless of browser support
-False - displays compatible tags only if the browser does not support it
+- True - displays compatible tags regardless of browser support.
+- False - displays compatible tags only if the browser does not support it.
+
 The second parameter (color): default false
 
-True - changes the placeholder color according to the css property of the set input or textarea
-False - forces the placeholder color to #ccc when the display is compatible
-In addition, the placeholder display is not hidden when the focus is acquired, and is hidden only when there is text input.
+- True - changes the placeholder color according to the css property of the set input or textarea.
+- False - forces the placeholder color to #ccc when the display is compatible.
+
+*In addition, the placeholder display is not hidden when the focus is acquired, and is hidden only when there is text input.*
 
 参数描述：
 第一个参数(all)：默认false
