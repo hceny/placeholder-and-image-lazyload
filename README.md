@@ -51,3 +51,21 @@ The second parameter (color): default false
 - false-在显示兼容时，强制placeholder颜色为#ccc
 
 *另外，在获取到焦点时，placeholder显示不会隐藏，仅在存在文字输入时，才会隐藏。*
+
+### image.lazyload.min.js
+
+Image lazy loading plugin, support for background image settings, can be further optimized.
+
+图片延迟加载插件，支持背景图片的设置，可进一步优化。
+
+```
+$lazyload.init(defaultImageUrl);
+```
+
+Instructions:
+
+- The default initialization loads the value of the data-src attribute. The background image is set to data-bg-src.
+
+使用方法：
+
+- 默认初始化加载data-src属性的值,背景图片设置data-bg-src,可以多次初始化执行。
