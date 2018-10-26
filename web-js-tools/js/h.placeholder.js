@@ -7,34 +7,34 @@
  * 使用该插件请保留该版权信息.
  **/
 var $placeholder = {
-	getStyle: function(ele) {
+	getStyle: function (ele) {
 		var style = null;
-		if(window.getComputedStyle)
+		if (window.getComputedStyle)
 			style = window.getComputedStyle(ele, null);
 		else
 			style = ele.currentStyle;
 		return style;
 	},
-	extendFunction: function() {
-		if(Function.bindNode)
+	extendFunction: function () {
+		if (Function.bindNode)
 			return;
-		Function.prototype.bindNode = function(oNode) {
+		Function.prototype.bindNode = function (oNode) {
 			var foo = this,
 				iNodeItem;
-			if(window.__bindNodes == null)
+			if (window.__bindNodes == null)
 				__bindNodes = [];
 			__bindNodes.push(oNode);
 			iNodeItem = __bindNodes.length - 1;
 			oNode = null;
-			return function(e) {
+			return function (e) {
 				foo.call(__bindNodes[iNodeItem], e || event)
 			}
 		}
 	},
-	setStyleEvent: function(nodes, changeColor) {
-		for(var i = 0; i < nodes.length; i++) {
+	setStyleEvent: function (nodes, changeColor) {
+		for (var i = 0; i < nodes.length; i++) {
 			var hint = nodes[i].getAttribute('placeholder');
-			if(!hint)
+			if (!hint)
 				continue;
 			var tagName = nodes[i].tagName;
 			var isTextarea = tagName.toUpperCase() == 'TEXTAREA';
@@ -60,7 +60,7 @@ var $placeholder = {
 			borderLeft = borderLeft ? borderLeft : 0;
 			color = color && changeColor ? color : '#ccc';
 
-			if(!nodeId) {
+			if (!nodeId) {
 				nodeId = tagName + '-placeholder-' + i;
 				nodes[i].setAttribute('id', nodeId);
 			}
@@ -83,28 +83,28 @@ var $placeholder = {
 			nodes[i].parentNode.insertBefore(label, nodes[i]);
 			nodes[i].removeAttribute('placeholder');
 			this.extendFunction();
-			var _nodeChange = function() {
-				if(this.value == '')
+			var _nodeChange = function () {
+				if (this.value == '')
 					document.getElementById('label_' + this.getAttribute('id')).style.display = 'inline-block';
 				else
 					document.getElementById('label_' + this.getAttribute('id')).style.display = 'none';
 			}
-			if(typeof document.addEventListener != "undefined") {
+			if (typeof document.addEventListener != "undefined") {
 				nodes[i].addEventListener("input", _nodeChange, true);
 			} else {
-				label.attachEvent("onclick", function() {
+				label.attachEvent("onclick", function () {
 					this.focus();
 				}.bindNode(nodes[i]));
 				nodes[i].attachEvent("onpropertychange", _nodeChange.bindNode(nodes[i]));
 			}
 		}
 	},
-	init: function(isAll, changeColor) {
-		var isObj = typeof(isAll) == 'object';
+	init: function (isAll, changeColor) {
+		var isObj = typeof (isAll) == 'object';
 		isAll = isObj ? isAll.all : isAll;
 		changeColor = isObj ? isObj.color : changeColor;
-		changeColor = typeof(changeColor) == 'undefined' ? true : changeColor;
-		if(!isAll && 'placeholder' in document.createElement('input'))
+		changeColor = typeof (changeColor) == 'undefined' ? true : changeColor;
+		if (!isAll && 'placeholder' in document.createElement('input'))
 			return;
 		this.setStyleEvent(document.getElementsByTagName('input'), changeColor);
 		this.setStyleEvent(document.getElementsByTagName('textarea'), changeColor);
