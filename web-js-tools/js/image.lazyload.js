@@ -52,8 +52,7 @@ $(function () {
 				var _this = $(obj);
 				if (_this.offset().top < seeHeight + scrollTop) {
 					var src = _this.css('background-image');
-					var defImg = defaultImage;
-					if (!src || src.indexOf(defImg) > -1 || src == 'none')
+					if (!src || src.indexOf(defaultImage) > -1 || src == 'none')
 						_this.css('background-image', "url(" + _this.attr(dataBgAttr)) + ")";;
 					bgIndexArray.push(index);
 				}
@@ -77,17 +76,16 @@ $(function () {
 	}
 	var loadImages = lazyload();
 	$lazyload.fn = function (outImg) {
-		defaultImage = outImg && defaultImage;
 		$.each($(imageNode), function (index, obj) {
 			var _this = $(obj);
 			if (!_this.attr('src'))
-				_this.attr('src', defaultImage);
+				_this.attr('src', outImg && defaultImage);
 		});
 		$.each($(bgNode), function (index, obj) {
 			var _this = $(obj);
 			var bgSrc = _this.css('background-image');
 			if (!bgSrc || bgSrc == 'none')
-				_this.css('background-image', "url(" + defaultImage + ")");
+				_this.css('background-image', "url(" + outImg && defaultImage + ")");
 		});
 		loadImages(true);
 	};
