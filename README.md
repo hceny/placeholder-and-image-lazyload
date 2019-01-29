@@ -45,7 +45,7 @@ The second parameter (color): default false
  - true-无论浏览器是否支持，都显示兼容标签
  - false-仅在浏览器不支持时显示兼容标签
 
-第二个参数(color)：默认false
+第二个参数(color)：默认true
 
 - true-根据设置的input或者textarea的css属性color改变placeholder颜色
 - false-在显示兼容时，强制placeholder颜色为#ccc
