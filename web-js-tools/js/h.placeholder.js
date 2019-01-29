@@ -103,7 +103,7 @@ var $placeholder = {
 		var isObj = typeof (isAll) == 'object';
 		isAll = isObj ? isAll.all : isAll;
 		changeColor = isObj ? isObj.color : changeColor;
-		changeColor = typeof (changeColor) == 'undefined' ? true : changeColor;
+		changeColor = typeof (changeColor) == 'undefined' ? false : changeColor;
 		if (!isAll && 'placeholder' in document.createElement('input'))
 			return;
 		this.setStyleEvent(document.getElementsByTagName('input'), changeColor);

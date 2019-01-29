@@ -31,7 +31,7 @@ First parameter (all): default false
 - True - displays compatible tags regardless of browser support.
 - False - displays compatible tags only if the browser does not support it.
 
-The second parameter (color): default true
+The second parameter (color): default false
 
 - True - changes the placeholder color according to the css property of the set input or textarea.
 - False - forces the placeholder color to #ccc when the display is compatible.
@@ -45,7 +45,7 @@ The second parameter (color): default true
  - true-无论浏览器是否支持，都显示兼容标签
  - false-仅在浏览器不支持时显示兼容标签
 
-第二个参数(color)：默认true
+第二个参数(color)：默认false
 
 - true-根据设置的input或者textarea的css属性color改变placeholder颜色
 - false-在显示兼容时，强制placeholder颜色为#ccc
