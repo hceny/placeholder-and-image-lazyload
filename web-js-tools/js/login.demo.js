@@ -27,5 +27,6 @@ $(function () {
     }).show().animate({
         'top': $(window).height() / 2 - loginBox.height() / 1.5
     }, 200);
+    
     $placeholder.init(true, true);
 });
