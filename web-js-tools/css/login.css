@@ -79,6 +79,10 @@ textarea {
     text-align: center;
 }
 
+.hidden {
+    display: none;
+}
+
 .input-text:focus {
     border-bottom: 1px #fff solid;
     border-radius: 10px;
