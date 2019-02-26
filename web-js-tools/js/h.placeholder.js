@@ -55,6 +55,7 @@ var $placeholder = {
 		borderTop = borderTop ? borderTop : 0;
 		borderLeft = borderLeft ? borderLeft : 0;
 		color = color && this.isChangeColor ? color : '#ccc';
+		display = node.value != '' ? 'none' : display;
 
 		label.innerHTML = hint ? hint : label.innerHTML;
 		label.style.position = 'absolute';
@@ -67,7 +68,8 @@ var $placeholder = {
 		label.style.fontSize = fontSize + 'px';
 		label.style.top = (top + (isTextarea ? (paddingTop + borderTop) : ((height - fontSize) / 2))) + 'px';
 		label.style.left = (left + paddingLeft + borderLeft) + 'px';
-		label.style.width = (width - paddingLeft * 2 - borderLeft * 2) + 'px';
+		width = (width - paddingLeft * 2 - borderLeft * 2);
+		label.style.width = width < 0 ? 0 : width + 'px';
 	},
 	setStyleEvent: function (nodes) {
 		for (var i = 0; i < nodes.length; i++) {
@@ -94,10 +96,10 @@ var $placeholder = {
 			this.extendFunction();
 			var _this = this;
 			var _nodeChange = function () {
-				if (this.value == '')
-					_this.show(this.getAttribute('id'));
+				if (this.value == '' && _this.getStyle(this).display != 'none')
+					document.getElementById('label_' + this.getAttribute('id')).style.display = 'inline-block';
 				else
-					_this.hide(this.getAttribute('id'));
+					document.getElementById('label_' + this.getAttribute('id')).style.display = 'none';
 			}
 			if (typeof document.addEventListener != "undefined") {
 				nodes[i].addEventListener("input", _nodeChange, true);
