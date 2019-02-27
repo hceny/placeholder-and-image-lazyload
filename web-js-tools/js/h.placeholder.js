@@ -118,9 +118,9 @@ var $placeholder = {
 	},
 	init: function (isAll, isChangeColor) {
 		var isObj = typeof (isAll) == 'object';
-		isAll = isObj ? isAll.all : isAll;
-		isChangeColor = isObj ? isObj.color : isChangeColor;
+		isChangeColor = isObj ? isAll.color : isChangeColor;
 		isChangeColor = typeof (isChangeColor) == 'undefined' ? false : isChangeColor;
+		isAll = isObj ? isAll.all : isAll;
 		if (!isAll && 'placeholder' in document.createElement('input'))
 			return;
 		this.isChangeColor = isChangeColor;
