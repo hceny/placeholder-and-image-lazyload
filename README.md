@@ -7,23 +7,30 @@ The plugin supports placeholder compatibility for input and textarea tags, suppo
 
 该插件支持对input、textarea两种标签进行placeholder兼容，支持颜色自定义，并根据标签样式自动读取字体大小、水平对齐方式、内外边距等。插件由原生JS编写，无需任何其他插件支持，并且使用简单，只需一行JS调用即可。
 
-使用方法一：
+使用方法一(method 1)：
 
 ```
 $placeholder.init();
 ```
 
-使用方法二：
+使用方法二(method 2)：
 
 ```
 $placeholder.init(true,true);
 ```
 
-使用方法三：
+使用方法三(method 3)：
 
 ```
 $placeholder.init({all:true,color:true});
 ```
+
+重置样式(reset style)：
+
+```
+$placeholder.refresh();
+```
+
 Parameter Description:
 
 First parameter (all): default false
